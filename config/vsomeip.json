@@ -1,0 +1,35 @@
+{
+    "unicast": "127.0.0.1",
+    "netmask": "255.255.255.0",
+    "logging": {
+        "level": "debug",
+        "console": "true",
+        "file": {
+            "enable": "false"
+        },
+        "dlt": {
+            "enable": "false"
+        }
+    },
+    "applications": [
+        {
+            "name": "vsomeip_response_sample",
+            "id": "0x1277"
+        },
+        {
+            "name": "vsomeip_request_sample",
+            "id": "0x1344"
+        }
+    ],
+    "services": [
+        {
+            "service": "0x1234",
+            "instance": "0x5678",
+            "unreliable": "30509"
+        }
+    ],
+    "routing": "vsomeip_response_sample",
+    "service-discovery": {
+        "enable": "false"
+    }
+}

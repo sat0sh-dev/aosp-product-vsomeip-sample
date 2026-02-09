@@ -1,0 +1,20 @@
+# SELinux policy for vsomeip sample applications
+# Phase 4: SOME/IP integration
+
+# TODO: Define proper SELinux types and policies
+# This is a placeholder for the actual policy
+
+# type vsomeip_sample, domain, coredomain;
+# type vsomeip_sample_exec, exec_type, file_type, system_file_type;
+
+# init_daemon_domain(vsomeip_sample)
+
+# Network access
+# allow vsomeip_sample self:udp_socket { create bind connect read write };
+# allow vsomeip_sample port_t:udp_socket name_bind;
+
+# Unix domain sockets (vsomeip local communication)
+# allow vsomeip_sample tmpfs:sock_file { create unlink write };
+
+# Configuration file access
+# allow vsomeip_sample product_config_file:file { read open getattr };
