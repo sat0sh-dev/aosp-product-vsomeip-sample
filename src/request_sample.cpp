@@ -9,9 +9,6 @@
  * - Sending a request and receiving a response
  */
 
-// TODO: Enable after vsomeip is built
-#if 0
-
 #include <vsomeip/vsomeip.hpp>
 #include <iostream>
 #include <thread>
@@ -115,17 +112,3 @@ int main() {
 
     return 0;
 }
-
-#else
-
-#include <iostream>
-
-int main() {
-    std::cout << "vsomeip_request_sample: vsomeip not yet built" << std::endl;
-    std::cout << "Build Phase 4 libraries first:" << std::endl;
-    std::cout << "  1. external/boost" << std::endl;
-    std::cout << "  2. external/vsomeip" << std::endl;
-    return 1;
-}
-
-#endif

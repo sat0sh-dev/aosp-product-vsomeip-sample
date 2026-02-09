@@ -11,36 +11,36 @@ cc_defaults {
     cflags: [
         "-DWITHOUT_SYSTEMD",
         "-Wno-unused-parameter",
+        "-fexceptions",
     ],
-    // TODO: Enable after vsomeip libraries are built
-    // shared_libs: [
-    //     "libvsomeip3",
-    //     "libvsomeip3-cfg",
-    //     "liblog",
-    // ],
-    // static_libs: [
-    //     "libboost_system",
-    //     "libboost_thread",
-    // ],
+    shared_libs: [
+        "libvsomeip3",
+        "libvsomeip3-cfg",
+        "liblog",
+    ],
+    static_libs: [
+        "libboost_system",
+        "libboost_thread",
+    ],
+    header_libs: [
+        "libboost_headers",
+    ],
+    local_include_dirs: ["src"],
     product_specific: true,
+    rtti: true,
 }
 
-// TODO: Enable after vsomeip libraries are built
-/*
 cc_binary {
     name: "vsomeip_request_sample",
     defaults: ["vsomeip_sample_defaults"],
     srcs: ["src/request_sample.cpp"],
-    init_rc: ["vsomeip_request_sample.rc"],
 }
 
 cc_binary {
     name: "vsomeip_response_sample",
     defaults: ["vsomeip_sample_defaults"],
     srcs: ["src/response_sample.cpp"],
-    init_rc: ["vsomeip_response_sample.rc"],
 }
-*/
 
 // Configuration file
 prebuilt_etc {
