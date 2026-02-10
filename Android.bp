@@ -1,31 +1,50 @@
 // product/vsomeip_sample/Android.bp
-// vsomeip sample applications (Phase 4)
-// Uses AOSP's existing external/sdv/vsomeip libraries and defaults
+// vsomeip sample applications (Phase 4.1.1)
+// Uses AOSP's external/sdv/vsomeip libraries with product partition patches
 
 package {
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
 
-// Use AOSP's vsomeip_example_defaults which has proper visibility
+// Custom defaults for product partition vsomeip samples
+// Cannot use vsomeip_example_defaults directly because it has product_available
+// which conflicts with product_specific
+cc_defaults {
+    name: "poc_vsomeip_product_defaults",
+    product_specific: true,
+    shared_libs: [
+        "libvsomeip3",
+        "liblog",
+    ],
+    header_libs: [
+        "libboost_library_headers",
+    ],
+    cppflags: [
+        "-std=c++11",
+        "-fexceptions",
+    ],
+    rtti: true,
+}
+
 cc_binary {
     name: "poc_vsomeip_request_sample",
-    defaults: ["vsomeip_example_defaults"],
+    defaults: ["poc_vsomeip_product_defaults"],
     srcs: ["src/request_sample.cpp"],
     local_include_dirs: ["src"],
 }
 
 cc_binary {
     name: "poc_vsomeip_response_sample",
-    defaults: ["vsomeip_example_defaults"],
+    defaults: ["poc_vsomeip_product_defaults"],
     srcs: ["src/response_sample.cpp"],
     local_include_dirs: ["src"],
 }
 
-// Configuration file for vendor partition
+// Configuration file for product partition
 prebuilt_etc {
     name: "poc_vsomeip_config",
     src: "config/vsomeip.json",
     sub_dir: "vsomeip",
     filename: "poc_vsomeip.json",
-    vendor: true,
+    product_specific: true,
 }
