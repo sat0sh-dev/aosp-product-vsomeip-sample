@@ -1,29 +1,31 @@
 // product/vsomeip_sample/Android.bp
-// vsomeip sample applications (Phase 4.1.1)
-// Uses AOSP's external/sdv/vsomeip libraries with product partition patches
+// vsomeip sample applications (Phase 4.1.2)
+// Uses self-managed external/boost and external/vsomeip repositories
 
 package {
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
 
-// Custom defaults for product partition vsomeip samples
-// Cannot use vsomeip_example_defaults directly because it has product_available
-// which conflicts with product_specific
+// Defaults for product partition vsomeip samples
+// Uses self-managed libraries from external/boost and external/vsomeip
 cc_defaults {
     name: "poc_vsomeip_product_defaults",
     product_specific: true,
     shared_libs: [
         "libvsomeip3",
         "libvsomeip3-cfg",
-        "libboost_system",
-        "libboost_filesystem",
         "liblog",
     ],
+    static_libs: [
+        "libboost_system",
+        "libboost_thread",
+        "libboost_filesystem",
+    ],
     header_libs: [
-        "libboost_library_headers",
+        "libboost_headers",
     ],
     cppflags: [
-        "-std=c++11",
+        "-std=c++17",
         "-fexceptions",
         "-DVSOMEIP_BASE_PATH=\"/data/local/tmp/\"",
     ],
