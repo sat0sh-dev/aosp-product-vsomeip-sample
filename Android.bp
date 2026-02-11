@@ -46,11 +46,29 @@ cc_binary {
     local_include_dirs: ["src"],
 }
 
+// VCS Mock Server (Phase 4.2)
+// Simulates VCS on PC/emulator for testing PAL2VCS
+cc_binary {
+    name: "vcs_mock",
+    defaults: ["poc_vsomeip_product_defaults"],
+    srcs: ["src/vcs_mock.cpp"],
+    local_include_dirs: ["src"],
+}
+
 // Configuration file for product partition
 prebuilt_etc {
     name: "poc_vsomeip_config",
     src: "config/vsomeip.json",
     sub_dir: "vsomeip",
     filename: "poc_vsomeip.json",
+    product_specific: true,
+}
+
+// VCS Mock configuration (Phase 4.2)
+prebuilt_etc {
+    name: "vcs_mock_config",
+    src: "config/vcs_mock.json",
+    sub_dir: "vsomeip",
+    filename: "vcs_mock.json",
     product_specific: true,
 }
