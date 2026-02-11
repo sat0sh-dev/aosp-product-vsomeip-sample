@@ -1,0 +1,15 @@
+# VCS Mock Server (Phase 4.2)
+# SOME/IP server for testing pal2vcs_daemon
+
+service vcs_mock /product/bin/vcs_mock
+    class main
+    user system
+    group system inet
+    setenv VSOMEIP_CONFIGURATION /product/etc/vsomeip/vcs_mock.json
+    disabled
+
+# VCS mock is disabled by default
+# For testing, start manually with: adb shell start vcs_mock
+# Or enable auto-start by uncommenting:
+# on property:sys.boot_completed=1
+#     start vcs_mock

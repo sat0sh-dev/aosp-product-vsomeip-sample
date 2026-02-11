@@ -53,6 +53,7 @@ cc_binary {
     defaults: ["poc_vsomeip_product_defaults"],
     srcs: ["src/vcs_mock.cpp"],
     local_include_dirs: ["src"],
+    init_rc: ["vcs_mock.rc"],
 }
 
 // Configuration file for product partition
